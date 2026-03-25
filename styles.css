@@ -779,10 +779,10 @@ body::after {
   }
 
   .page-frame {
-    padding-top: clamp(1.5rem, 6vw, 3rem);
-    padding-bottom: clamp(1.5rem, 6vw, 3rem);
-    padding-left: clamp(0.75rem, 3vw, 1rem);
-    padding-right: clamp(0.75rem, 3vw, 1rem);
+    padding-top: clamp(1.2rem, 5vw, 2.3rem);
+    padding-bottom: clamp(1.2rem, 5vw, 2.3rem);
+    padding-left: clamp(0.7rem, 2.5vw, 0.95rem);
+    padding-right: clamp(0.7rem, 2.5vw, 0.95rem);
   }
 
   .border-top,
@@ -812,27 +812,47 @@ body::after {
   }
 
   .content {
-    padding: clamp(1.25rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(0.95rem, 3.5vw, 1.35rem) clamp(0.85rem, 2.5vw, 1.2rem);
     max-width: 100%;
   }
 
   .section {
-    padding: clamp(1.5rem, 5vw, 2.5rem) 0;
+    padding: clamp(1.1rem, 4.5vw, 1.8rem) 0;
   }
 
   .hero {
-    padding: clamp(1rem, 4vw, 2rem) clamp(0.75rem, 14vw, 3rem) clamp(1rem, 4vw, 2rem) clamp(0.75rem, 6vw, 1.5rem);
+    padding: clamp(0.75rem, 3.5vw, 1.4rem) clamp(0.75rem, 12vw, 2.6rem) clamp(0.85rem, 3.5vw, 1.6rem) clamp(0.75rem, 6vw, 1.35rem);
   }
 
   .hero-name {
-    font-size: clamp(2.4rem, 10vw, 3.5rem);
-    padding: 0 clamp(1rem, 16vw, 3.5rem) 0 clamp(0.5rem, 5vw, 1.25rem);
+    font-size: clamp(2.2rem, 9vw, 3.1rem);
+    padding: 0 clamp(0.9rem, 15vw, 3.25rem) 0 clamp(0.5rem, 5vw, 1.15rem);
+  }
+
+  .action-section {
+    padding-top: 0.65rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .action-button {
+    min-width: 0;
+    width: 100%;
+    max-width: 360px;
+    padding: 0.65rem 0.9rem;
+  }
+
+  .footer {
+    padding: 0.95rem 1rem 1.1rem;
   }
 }
 
 @media (max-width: 400px) {
   .page-frame {
-    padding-top: 4.5rem;
+    padding-top: 3.2rem;
   }
 
   .countdown-item {
