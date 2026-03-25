@@ -1,0 +1,7 @@
+Para que el fondo de la invitación se vea, copiá en ESTA carpeta (assets) estas 3 imágenes con exactamente estos nombres:
+
+  - top.jpeg    (parte superior del fondo)
+  - medio.jpeg  (parte del medio, se repite)
+  - footer.jpeg (parte inferior del fondo)
+
+Ruta de esta carpeta: Mel\mel\assets\

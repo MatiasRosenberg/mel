@@ -1,0 +1,24 @@
+Prueba del envío de email ANTES de publicar
+===========================================
+
+1) Copiá este archivo a ".env" y completá SMTP_USER, SMTP_PASS, MAIL_TO, etc.
+
+2) En esta carpeta:
+   npm install
+   npm start
+
+   Deberías ver: "RSVP mail escuchando en :3000"
+
+3) Comprobá que responde:
+   http://127.0.0.1:3000/api/health
+
+4) Abrí la invitación con un servidor HTTP (no abras rsvp.html con doble clic):
+   - En VS Code: extensión "Live Server" sobre index.html o rsvp.html
+   - O: npx --yes serve ..   (desde la carpeta mel)
+
+5) En el formulario RSVP, enviá una prueba. Con la página en localhost,
+   rsvp.html usa solo http://127.0.0.1:3000/api/rsvp (no hace falta CONFIG.apiUrl).
+
+6) Antes de subir a GitHub: en ALLOW_ORIGIN poné tu URL de GitHub Pages
+   (no dejes * en producción si podés evitarlo) y en rsvp.html CONFIG.apiUrl
+   la URL pública de Render u otro hosting.

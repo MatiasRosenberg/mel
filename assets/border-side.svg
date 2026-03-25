@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 260" width="100" height="260">
+  <defs>
+    <linearGradient id="fadeT" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f9fc" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f5f9fc" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="fadeB" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#f5f9fc" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f5f9fc" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="petal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b8d4e6"/>
+      <stop offset="0.5" stop-color="#8fc4dc"/>
+      <stop offset="1" stop-color="#5a9fc9"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a6b4e"/>
+      <stop offset="0.5" stop-color="#6b8f71"/>
+      <stop offset="1" stop-color="#8a9f7a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="100" height="36" fill="url(#fadeT)"/>
+  <rect x="0" y="224" width="100" height="36" fill="url(#fadeB)"/>
+  <!-- Flor 1: 5 pétalos bien marcados (forma de flor, no punto) -->
+  <g opacity="0.96">
+    <ellipse cx="50" cy="58" rx="18" ry="12" fill="url(#petal)" transform="rotate(-18 50 58)"/>
+    <ellipse cx="50" cy="58" rx="18" ry="12" fill="url(#petal)" transform="rotate(54 50 58)"/>
+    <ellipse cx="50" cy="58" rx="18" ry="12" fill="url(#petal)" transform="rotate(126 50 58)"/>
+    <ellipse cx="50" cy="58" rx="18" ry="12" fill="url(#petal)" transform="rotate(198 50 58)"/>
+    <ellipse cx="50" cy="58" rx="18" ry="12" fill="url(#petal)" transform="rotate(270 50 58)"/>
+    <circle cx="50" cy="58" r="8" fill="#5a9fc9"/>
+  </g>
+  <!-- Hoja 1: forma de hoja alargada con punta -->
+  <path fill="url(#leaf)" opacity="0.92" d="M50 95 L65 108 Q62 122 48 128 Q42 118 42 108 Q44 98 50 95 Z"/>
+  <path fill="url(#leaf)" opacity="0.9" d="M50 95 L35 108 Q38 122 52 128 Q58 118 58 108 Q56 98 50 95 Z"/>
+  <!-- Flor 2 -->
+  <g opacity="0.96">
+    <ellipse cx="50" cy="158" rx="18" ry="12" fill="url(#petal)" transform="rotate(10 50 158)"/>
+    <ellipse cx="50" cy="158" rx="18" ry="12" fill="url(#petal)" transform="rotate(82 50 158)"/>
+    <ellipse cx="50" cy="158" rx="18" ry="12" fill="url(#petal)" transform="rotate(154 50 158)"/>
+    <ellipse cx="50" cy="158" rx="18" ry="12" fill="url(#petal)" transform="rotate(226 50 158)"/>
+    <ellipse cx="50" cy="158" rx="18" ry="12" fill="url(#petal)" transform="rotate(298 50 158)"/>
+    <circle cx="50" cy="158" r="8" fill="#5a9fc9"/>
+  </g>
+  <!-- Hoja 2 -->
+  <path fill="url(#leaf)" opacity="0.9" d="M50 198 L62 212 Q58 224 46 228 Q40 218 42 208 Q44 200 50 198 Z"/>
+  <path fill="url(#leaf)" opacity="0.88" d="M50 198 L38 212 Q42 224 54 228 Q60 218 58 208 Q56 200 50 198 Z"/>
+</svg>

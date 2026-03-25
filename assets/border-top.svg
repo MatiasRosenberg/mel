@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" width="280" height="72">
+  <defs>
+    <linearGradient id="fadeL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f5f9fc" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f5f9fc" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="fadeR" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#f5f9fc" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f5f9fc" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="petal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b8d4e6"/>
+      <stop offset="0.5" stop-color="#8fc4dc"/>
+      <stop offset="1" stop-color="#5a9fc9"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a6b4e"/>
+      <stop offset="0.5" stop-color="#6b8f71"/>
+      <stop offset="1" stop-color="#8a9f7a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="40" height="72" fill="url(#fadeL)"/>
+  <rect x="240" y="0" width="40" height="72" fill="url(#fadeR)"/>
+  <!-- Flor: 5 pétalos claros (decoración, no punto) -->
+  <g opacity="0.96">
+    <ellipse cx="50" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(-22 50 36)"/>
+    <ellipse cx="50" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(50 50 36)"/>
+    <ellipse cx="50" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(122 50 36)"/>
+    <ellipse cx="50" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(194 50 36)"/>
+    <ellipse cx="50" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(266 50 36)"/>
+    <circle cx="50" cy="36" r="9" fill="#5a9fc9"/>
+  </g>
+  <!-- Hoja: forma reconocible -->
+  <path fill="url(#leaf)" opacity="0.92" d="M95 28 L118 36 Q114 50 98 54 Q88 46 88 36 Q90 30 95 28 Z"/>
+  <path fill="url(#leaf)" opacity="0.9" d="M95 44 L118 36 Q114 22 98 18 Q88 26 88 36 Q90 42 95 44 Z"/>
+  <!-- Flor 2 -->
+  <g opacity="0.96">
+    <ellipse cx="140" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(8 140 36)"/>
+    <ellipse cx="140" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(80 140 36)"/>
+    <ellipse cx="140" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(152 140 36)"/>
+    <ellipse cx="140" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(224 140 36)"/>
+    <ellipse cx="140" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(296 140 36)"/>
+    <circle cx="140" cy="36" r="9" fill="#5a9fc9"/>
+  </g>
+  <!-- Hoja 2 -->
+  <path fill="url(#leaf)" opacity="0.9" d="M185 28 L208 36 Q204 50 188 54 Q178 46 178 36 Q180 30 185 28 Z"/>
+  <path fill="url(#leaf)" opacity="0.92" d="M185 44 L208 36 Q204 22 188 18 Q178 26 178 36 Q180 42 185 44 Z"/>
+  <!-- Flor 3 -->
+  <g opacity="0.96">
+    <ellipse cx="230" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(-12 230 36)"/>
+    <ellipse cx="230" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(60 230 36)"/>
+    <ellipse cx="230" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(132 230 36)"/>
+    <ellipse cx="230" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(204 230 36)"/>
+    <ellipse cx="230" cy="36" rx="20" ry="14" fill="url(#petal)" transform="rotate(276 230 36)"/>
+    <circle cx="230" cy="36" r="9" fill="#5a9fc9"/>
+  </g>
+</svg>
