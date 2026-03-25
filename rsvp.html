@@ -11,18 +11,20 @@
 </head>
 <body class="rsvp-page">
   <!--
-    Prueba local: en la carpeta email-server creá .env (copiá .env.example), npm install, npm start.
-    Abrí esta página con un servidor HTTP (Live Server, no file://). En localhost el JS usa solo http://127.0.0.1:3000/api/rsvp.
-    Producción: en CONFIG.apiUrl pegá la URL de tu API en Render, etc.
+    No existe "JS + SMTP" en el navegador: GitHub Pages no puede enviar mails con tu servidor de correo.
+    Este formulario usa FormSubmit: solo reemplazá TU_EMAIL en el action y confirmá el correo la primera vez.
   -->
   <div class="page-wrapper">
     <div class="page-frame">
       <main class="content">
         <section class="section rsvp-section">
           <h2 class="section-title">Formulario de asistencia</h2>
-          <p id="rsvp-error" class="rsvp-error" role="alert" hidden></p>
-          <form id="rsvp-form" class="rsvp-form" novalidate>
-            <input type="text" id="rsvp-honey" class="rsvp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <form class="rsvp-form" method="POST" action="https://formsubmit.co/1999matute@gmail.com">
+            <input type="hidden" name="_subject" value="Confirmación de asistencia - 15 de Melina">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" id="formsubmit-next" value="">
+            <input type="text" name="_honey" class="rsvp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <label for="rsvp-nombre">Nombre y apellido</label>
             <input id="rsvp-nombre" name="nombre" type="text" required>
@@ -42,9 +44,8 @@
             <label for="rsvp-mensaje">Mensaje (opcional)</label>
             <textarea id="rsvp-mensaje" name="mensaje" rows="4" placeholder="Dejanos un mensaje"></textarea>
 
-            <button class="action-button" type="submit" id="rsvp-submit">Enviar confirmación</button>
+            <button class="action-button" type="submit">Enviar confirmación</button>
             <a class="action-button" href="index.html">Volver a la invitación</a>
-            <p class="rsvp-help">En tu PC: corre <strong>email-server</strong> y abrí esta página por http (Live Server). En internet: API en Render + CONFIG.apiUrl.</p>
           </form>
         </section>
       </main>
@@ -53,100 +54,8 @@
 
   <script>
     (function () {
-      /* apiUrl vacío: en localhost/127.0.0.1 usa solo el servidor local (puerto abajo).
-         Para GitHub Pages, pegá la URL de producción, ej. https://xxx.onrender.com/api/rsvp */
-      var CONFIG = {
-        apiUrl: '',
-        localPort: 3000,
-        secret: ''
-      };
-
-      function resolveApiUrl() {
-        var manual = String(CONFIG.apiUrl || '').trim();
-        if (manual && /^https?:\/\//i.test(manual)) return manual;
-        var h = window.location.hostname;
-        if (h === 'localhost' || h === '127.0.0.1') {
-          var p = Number(CONFIG.localPort) || 3000;
-          return 'http://127.0.0.1:' + p + '/api/rsvp';
-        }
-        return '';
-      }
-
-      var form = document.getElementById('rsvp-form');
-      var errEl = document.getElementById('rsvp-error');
-      var btn = document.getElementById('rsvp-submit');
-      var honey = document.getElementById('rsvp-honey');
-
-      function showError(msg) {
-        errEl.textContent = msg || '';
-        errEl.hidden = !msg;
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        showError('');
-
-        var url = resolveApiUrl();
-        if (!url) {
-          showError(
-            'Falta CONFIG.apiUrl con la URL de tu API (ej. en Render). ' +
-            'Si estás probando en tu PC: abrí rsvp.html por http (Live Server), no como archivo, y en otra terminal ejecutá npm start en la carpeta email-server.'
-          );
-          return;
-        }
-        if (window.location.protocol === 'file:') {
-          showError('No uses archivo local (file://). Abrí el proyecto con Live Server u otro servidor HTTP para probar el envío.');
-          return;
-        }
-
-        var fd = new FormData(form);
-        var payload = {
-          nombre: String(fd.get('nombre') || '').trim(),
-          cantidad: String(fd.get('cantidad') || '').trim(),
-          adultos: String(fd.get('adultos') || '0').trim(),
-          ninos: String(fd.get('ninos') || '0').trim(),
-          restricciones: String(fd.get('restricciones') || '').trim(),
-          mensaje: String(fd.get('mensaje') || '').trim(),
-          _honey: honey ? honey.value : ''
-        };
-
-        var headers = { 'Content-Type': 'application/json' };
-        if (CONFIG.secret) headers['Authorization'] = 'Bearer ' + CONFIG.secret;
-
-        btn.disabled = true;
-        var prev = btn.textContent;
-        btn.textContent = 'Enviando…';
-
-        fetch(url, {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify(payload)
-        })
-          .then(function (res) {
-            return res.text().then(function (text) {
-              var data = {};
-              try {
-                data = text ? JSON.parse(text) : {};
-              } catch (e) {}
-              return { ok: res.ok, data: data };
-            });
-          })
-          .then(function (_ref) {
-            if (_ref.ok && _ref.data && _ref.data.ok) {
-              window.location.href = new URL('gracias.html', window.location.href).href;
-              return;
-            }
-            var msg = (_ref.data && _ref.data.error) ? _ref.data.error : 'No se pudo enviar. Probá más tarde.';
-            showError(msg);
-          })
-          .catch(function () {
-            showError('Error de red. Revisá la URL del servidor o tu conexión.');
-          })
-          .finally(function () {
-            btn.disabled = false;
-            btn.textContent = prev;
-          });
-      });
+      var el = document.getElementById('formsubmit-next');
+      if (el) el.value = new URL('gracias.html', window.location.href).href;
     })();
   </script>
 </body>
