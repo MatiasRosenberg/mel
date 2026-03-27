@@ -39,9 +39,13 @@ body {
 }
 
 /* Texto más legible y formal sobre fondo con imagen */
-h1, h2, h3, p {
+h1, h2, h3, p, .hero-label, .hero-name, .invitation-text, .event-day, .event-time, .event-place, .event-dresscode {
   color: var(--blue-ink);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.95),
+    0 1px 3px rgba(0, 0, 0, 0.32);
 }
 
 /* ===== Fondo único escalable ===== */
@@ -98,9 +102,9 @@ body::after {
 .frame-bg {
   position: absolute;
   inset: 0;
-  background: rgba(232, 242, 248, 0.14);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  background: rgba(232, 242, 248, 0.18); /* menos opacidad para ver más fondo */
+  backdrop-filter: blur(0.8px);
+  -webkit-backdrop-filter: blur(0.8px);
   z-index: 1;
   pointer-events: none;
 }
@@ -545,6 +549,86 @@ body::after {
 
   .rsvp-page .section-title {
     font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  /* Mejora de legibilidad móvil sin cambiar color */
+  .hero-label,
+  .hero-name,
+  .event-day,
+  .event-time,
+  .invitation-text {
+    font-weight: 700;
+    text-shadow:
+      0 0 2px rgba(255, 255, 255, 0.95),
+      0 1px 4px rgba(0, 0, 0, 0.40);
+  }
+
+  .hero-label {
+    font-size: clamp(1.05rem, 3.3vw, 1.25rem);
+  }
+
+  .hero-name {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+
+  .invitation-text {
+    max-width: 280px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .action-button {
+    min-width: 0;
+    width: 100%;
+    max-width: 220px;
+    margin: 0.4rem auto;
+    padding: 0.48rem 0.7rem;
+    font-size: 0.88rem;
+    border-radius: 999px;
+  }
+
+  #btn-mapa,
+  #btn-confirmar {
+    min-width: 0;
+    max-width: 220px;
+  }
+
+  .page-frame {
+    padding-top: clamp(4rem, 15vw, 6.5rem);
+    padding-bottom: clamp(2rem, 8vw, 4rem);
+    margin-top: 1rem;
+  }
+
+  .hero {
+    padding-top: clamp(3rem, 10vw, 5rem);
+    padding-bottom: clamp(2rem, 7vw, 3.5rem);
+    margin-top: 1rem;
+  }
+
+  .content {
+    padding-top: 0.8rem;
+  }
+
+  .content {
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  @media (max-width: 420px) {
+    .invitation-text {
+      max-width: 240px;
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+    }
+
+    .hero-name {
+      font-size: clamp(1.8rem, 10vw, 2.6rem);
+    }
+
+    .action-button {
+      max-width: 200px;
+      font-size: 0.84rem;
+      padding: 0.4rem 0.6rem;
+    }
   }
 }
 
