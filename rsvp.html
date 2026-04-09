@@ -13,21 +13,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="rsvp-page">
-  <!--
-    No existe "JS + SMTP" en el navegador: GitHub Pages no puede enviar mails con tu servidor de correo.
-    Este formulario usa FormSubmit: solo reemplazá TU_EMAIL en el action y confirmá el correo la primera vez.
-  -->
   <div class="page-wrapper">
     <div class="page-frame">
       <div class="frame-bg" aria-hidden="true"></div>
       <main class="content">
         <section class="section rsvp-section">
           <h2 class="section-title">Formulario de asistencia</h2>
-          <form class="rsvp-form" method="POST" action="https://formsubmit.co/yami.rosenberg@hotmail.com">
-            <input type="hidden" name="_subject" value="Confirmación de asistencia - 15 de Melina">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" id="formsubmit-next" value="">
+          <p id="rsvp-status" class="rsvp-error" role="alert" hidden></p>
+          <form id="rsvp-form" class="rsvp-form" novalidate>
             <input type="text" name="_honey" class="rsvp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <label for="rsvp-nombre">Nombre y apellido</label>
@@ -48,7 +41,7 @@
             <label for="rsvp-mensaje">Mensaje (opcional)</label>
             <textarea id="rsvp-mensaje" name="mensaje" rows="4" placeholder="Dejanos un mensaje"></textarea>
 
-            <button class="action-button" type="submit">Enviar confirmación</button>
+            <button class="action-button" type="submit" id="rsvp-btn">Enviar confirmación</button>
             <a class="action-button" href="index.html">Volver a la invitación</a>
           </form>
         </section>
@@ -58,8 +51,86 @@
 
   <script>
     (function () {
-      var el = document.getElementById('formsubmit-next');
-      if (el) el.value = new URL('gracias.html', window.location.href).href;
+      var MAILTO = 'yami.rosenberg@hotmail.com';
+      var AJAX_URL = 'https://formsubmit.co/ajax/' + MAILTO;
+
+      var form = document.getElementById('rsvp-form');
+      var btn = document.getElementById('rsvp-btn');
+      var status = document.getElementById('rsvp-status');
+
+      function msg(txt, isError) {
+        status.textContent = txt;
+        status.hidden = !txt;
+        status.className = isError ? 'rsvp-error' : 'rsvp-ok';
+      }
+
+      function buildMailto(fd) {
+        var sub = encodeURIComponent('Confirmación de asistencia - 15 de Melina');
+        var body = encodeURIComponent(
+          'Confirmo asistencia para los 15 de Melina.\n\n' +
+          'Nombre: ' + (fd.get('nombre') || '') + '\n' +
+          'Cantidad total: ' + (fd.get('cantidad') || '') + '\n' +
+          'Adultos: ' + (fd.get('adultos') || '0') + '\n' +
+          'Niños: ' + (fd.get('ninos') || '0') + '\n' +
+          'Restricciones: ' + (fd.get('restricciones') || 'Ninguna') + '\n' +
+          'Mensaje: ' + (fd.get('mensaje') || 'Sin mensaje') + '\n'
+        );
+        return 'mailto:' + MAILTO + '?subject=' + sub + '&body=' + body;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        msg('');
+
+        var nombre = (form.elements.nombre.value || '').trim();
+        var cantidad = (form.elements.cantidad.value || '').trim();
+        if (!nombre || !cantidad) {
+          msg('Completá nombre y cantidad de asistentes.', true);
+          return;
+        }
+
+        var fd = new FormData(form);
+        fd.append('_subject', 'Confirmación de asistencia - 15 de Melina');
+        fd.append('_template', 'table');
+        fd.append('_captcha', 'false');
+
+        btn.disabled = true;
+        var prev = btn.textContent;
+        btn.textContent = 'Enviando…';
+
+        var timeout = setTimeout(function () { ctrl.abort(); }, 12000);
+        var ctrl = new AbortController();
+
+        fetch(AJAX_URL, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: fd,
+          signal: ctrl.signal
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            clearTimeout(timeout);
+            if (data && data.success) {
+              window.location.href = new URL('gracias.html', window.location.href).href;
+            } else {
+              throw new Error('no-success');
+            }
+          })
+          .catch(function () {
+            clearTimeout(timeout);
+            var link = buildMailto(fd);
+            status.innerHTML =
+              'No se pudo conectar con el servicio. ' +
+              '<a href="' + link + '" style="color:#1e4578;font-weight:600;">Tocá acá para enviar por email</a> ' +
+              '(se abre tu app de correo con los datos ya cargados).';
+            status.hidden = false;
+            status.className = 'rsvp-error';
+          })
+          .finally(function () {
+            btn.disabled = false;
+            btn.textContent = prev;
+          });
+      });
     })();
   </script>
 </body>

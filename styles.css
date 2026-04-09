@@ -525,6 +525,16 @@ body::after {
   border: 1px solid rgba(180, 60, 70, 0.25);
 }
 
+.rsvp-ok {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #1a5f3a;
+  background: rgba(240, 255, 245, 0.92);
+  border: 1px solid rgba(50, 160, 90, 0.25);
+}
+
 @media (max-width: 640px) {
   .page-frame {
     min-height: auto;
